@@ -8,6 +8,8 @@ import List from './components/list';
 import Active from './components/active';
 import Stats from './components/stats';
 import Settings from './components/settings';
+import Add from './components/add';
+import Edit from './components/edit';
 
 import './styles/main.css';
 import './styles/sidebar.css';
@@ -80,6 +82,8 @@ class Main extends Component {
               <Route path="/stats" element={<Stats />} />
 
               <Route path="/settings" element={<Settings />} />
+
+              <Route path="/add" element={<Add />} />
             </Routes>
           </div>
         </div>

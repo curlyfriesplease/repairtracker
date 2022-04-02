@@ -17,6 +17,7 @@
 
 #navbarlist {
   height: 100%;
+  width: 180px;
   display: flex;
   flex-direction: column;
   justify-content: center;
