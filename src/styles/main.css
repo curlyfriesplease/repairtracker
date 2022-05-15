@@ -1,5 +1,6 @@
 html {
   background-color: black;
+  color: white;
 }
 
 #theBigFella {
@@ -13,6 +14,7 @@ html {
 
 #content {
   width: 80%;
-  background-color: grey;
   margin-left: 150px;
+  margin-top: 50px;
 }
+
