@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component, useState, useContext, useMemo } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-
 import jQuery from 'jquery';
 import $ from 'jquery';
 
@@ -14,21 +13,28 @@ import Edit from './components/edit';
 import './styles/main.css';
 import './styles/sidebar.css';
 
-class Main extends Component {
-  highlightActiveNavbarSelection() {
-    console.log('navbar item clicked');
-  }
+const UserContext = React.createContext(null);
 
-  render() {
-    return (
-      <Router>
+// Compo to show the currently active customer
+function ActiveCustomerBar() {
+  const customer = useContext(UserContext);
+  return <h1>Customer id: {customer.id}</h1>;
+}
+
+function Main(props) {
+  const [activeCustomer, setActiveCustomer] = useState({ id: 'none' });
+  const value = useMemo(
+    () => ({ activeCustomer, setActiveCustomer }),
+    [activeCustomer]
+  );
+  return (
+    <Router>
+      <UserContext.Provider value={value}>
+        <ActiveCustomerBar />
         <div id="theBigFella">
           <div id="navbar">
             <div id="navbarlist">
-              <div
-                className="navItem activeSelection"
-                onClick={this.highlightActiveNavbarSelection}
-              >
+              <div className="navItem activeSelection">
                 <Link to="/">
                   <div className="navIcon">
                     <span className="material-icons-outlined">
@@ -38,10 +44,7 @@ class Main extends Component {
                   <div className="navText">LIST</div>
                 </Link>
               </div>
-              <div
-                className="navItem"
-                onClick={this.highlightActiveNavbarSelection}
-              >
+              <div className="navItem">
                 <Link to="/active">
                   <div className="navIcon">
                     <span className="material-icons-outlined">handyman</span>
@@ -49,10 +52,7 @@ class Main extends Component {
                   <div className="navText">ACTIVE</div>
                 </Link>
               </div>
-              <div
-                className="navItem"
-                onClick={this.highlightActiveNavbarSelection}
-              >
+              <div className="navItem">
                 <Link to="/stats">
                   <div className="navIcon">
                     <span className="material-icons-outlined">assessment</span>
@@ -60,10 +60,7 @@ class Main extends Component {
                   <div className="navText">STATS</div>
                 </Link>
               </div>
-              <div
-                className="navItem"
-                onClick={this.highlightActiveNavbarSelection}
-              >
+              <div className="navItem">
                 <Link to="/settings">
                   <div className="navIcon">
                     <span className="material-icons-outlined">settings</span>
@@ -87,9 +84,9 @@ class Main extends Component {
             </Routes>
           </div>
         </div>
-      </Router>
-    );
-  }
+      </UserContext.Provider>
+    </Router>
+  );
 }
 
 export default Main;

@@ -5,7 +5,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { createStyles, makeStyles } from '@mui/styles';
 import { DataGrid } from '@mui/x-data-grid';
 
-export let activeCustomerObject = {};
+let activeCustomerObject = {};
 
 class List extends Component {
   render() {

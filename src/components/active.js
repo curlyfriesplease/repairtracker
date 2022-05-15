@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import { activeCustomerObject } from './list';
+
 class Active extends Component {
   render() {
     return (
