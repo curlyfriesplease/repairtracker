@@ -1,12 +1,11 @@
 .footer {
     position: fixed;
     bottom: 0;
-    height: 100px;
-    width: 70%;
+    height: 120px;
+    width: 80%;
     background: #000000;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to bottom, #313131, #000000);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to bottom, #313131, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
+    background: -webkit-linear-gradient(to bottom, #313131, #000000);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, #313131, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     color: white;
     text-align: center;
     display: grid;
@@ -14,6 +13,10 @@ background: linear-gradient(to bottom, #313131, #000000); /* W3C, IE 10+/ Edge, 
     grid-template-rows: auto auto auto auto;
     grid-template-areas: "name_and_id" "descriptions" "stopwatch";
     border-radius: 50px 50px 0px 0px;
+    box-shadow: 0 0 0.3rem rgba(255, 255, 255, 0.411), 0 0 0.3rem rgba(255, 255, 255, 0.459), 0 0 2rem #2c1dff,
+    0 0 0.8rem #2c1dff79, 0 0 3.2rem #2c1dff75, inset 0 0 1.8rem #2c1dff70;
+    padding-top: 20px;
+    z-index:4;
 }
 
  .footer div, h4, h3 {

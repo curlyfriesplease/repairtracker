@@ -5,8 +5,9 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { createStyles, makeStyles } from '@mui/styles';
 import { DataGrid } from '@mui/x-data-grid';
 import UserContext from '../main';
+import { CustomerContext } from '../main';
 
-let activeCustomerObject = {};
+export let activeCustomerObject;
 
 export function List() {
   return (
@@ -20,6 +21,12 @@ export function List() {
 }
 
 export default List;
+
+function handleRowClick(newSelection) {
+  const obj = rows.find((x) => x.id == newSelection);
+  activeCustomerObject = obj;
+  console.log(activeCustomerObject);
+}
 
 const columns = [
   { field: 'id', headerName: 'ID', minWidth: 90, align: 'center', flex: 1 },
@@ -78,18 +85,9 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-const handleRowClick = (newSelection) => {
-  const obj = rows.find((x) => x.id == newSelection);
-  activeCustomerObject = obj;
-  console.log(activeCustomerObject);
-  // const customer = useContext(UserContext);
-  // customer.setActiveCustomer('ads');
-};
-
 export function DataTable() {
   const classes = useStyles();
-
-  const [selectionModel, setSelectionModel] = React.useState([]);
+  const [customer, setCustomer] = useContext(CustomerContext);
 
   return (
     <div id="chonky" style={{ width: '90%', color: 'primary.light' }}>
@@ -106,6 +104,15 @@ export function DataTable() {
         // onRowClick={handleRowClick}
         onSelectionModelChange={(newSelection) => {
           handleRowClick(newSelection);
+          setCustomer({
+            id: activeCustomerObject.id,
+            customer: activeCustomerObject.customer,
+            itemDesc: activeCustomerObject.itemDesc,
+            workDesc: activeCustomerObject.workDesc,
+            status: activeCustomerObject.status,
+            totalTime: activeCustomerObject.totalTime,
+            flag: activeCustomerObject.flag,
+          });
         }}
       />
     </div>

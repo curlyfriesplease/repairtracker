@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import jQuery from 'jquery';
 import $ from 'jquery';
 
-import List from './components/list';
+import List, { activeCustomerObject } from './components/list';
 import Active from './components/active';
 import Stats from './components/stats';
 import Settings from './components/settings';
