@@ -1,6 +1,7 @@
 html {
   background-color: black;
   color: white;
+  font-family: 'Jura', sans-serif;
 }
 
 #theBigFella {
@@ -10,6 +11,7 @@ html {
   flex-direction: row;
   justify-content: center;
   color: white;
+
 }
 
 #content {

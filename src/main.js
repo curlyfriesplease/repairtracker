@@ -10,28 +10,46 @@ import Settings from './components/settings';
 import Add from './components/add';
 import Edit from './components/edit';
 
+import ActiveCustomerBar from './components/footer';
+
 import './styles/main.css';
 import './styles/sidebar.css';
 
-const UserContext = React.createContext(null);
+// Use react context to provide customer details, held in state within it
+export const CustomerContext = React.createContext(null);
+function CustomerContextProvider(props) {
+  const [customer, setCustomer] = useState({ id: 'none' });
+  return (
+    <CustomerContext.Provider value={[customer, setCustomer]}>
+      {props.children}
+    </CustomerContext.Provider>
+  );
+}
 
 // Compo to show the currently active customer
-function ActiveCustomerBar() {
-  const customer = useContext(UserContext);
-  return <h1>Customer id: {customer.id}</h1>;
-}
+// function ActiveCustomerBar() {
+//   const [customer] = useContext(CustomerContext);
+//   return (
+//     <>
+//       <h4>ID: {customer.id}</h4>
+//       <h4>Name: {customer.customer}</h4>
+//       <h4>Item: {customer.itemDesc}</h4>
+//       <h4>Work: {customer.workDesc}</h4>
+//       <h4>status: {customer.status}</h4>
+//       <h4>Time: 4hrs 35m</h4>
+//     </>
+//   );
+// }
 
 function Main(props) {
   const [activeCustomer, setActiveCustomer] = useState({ id: 'none' });
-  const value = useMemo(
-    () => ({ activeCustomer, setActiveCustomer }),
-    [activeCustomer]
-  );
+  const value = { activeCustomer, setActiveCustomer };
+
   return (
     <Router>
-      <UserContext.Provider value={value}>
-        <ActiveCustomerBar />
+      <CustomerContextProvider>
         <div id="theBigFella">
+          <ActiveCustomerBar />
           <div id="navbar">
             <div id="navbarlist">
               <div className="navItem activeSelection">
@@ -84,7 +102,7 @@ function Main(props) {
             </Routes>
           </div>
         </div>
-      </UserContext.Provider>
+      </CustomerContextProvider>
     </Router>
   );
 }

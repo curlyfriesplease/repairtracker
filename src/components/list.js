@@ -1,23 +1,22 @@
-import React, { Component } from 'react';
+import React, { useState, useContext } from 'react';
 import ReactDOM from 'react-dom';
 import Button from '@mui/material/Button';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { createStyles, makeStyles } from '@mui/styles';
 import { DataGrid } from '@mui/x-data-grid';
+import UserContext from '../main';
 
 let activeCustomerObject = {};
 
-class List extends Component {
-  render() {
-    return (
-      <div id="listContainer">
-        <Button variant="outlined" href="/add">
-          Add job
-        </Button>
-        <DataTable />
-      </div>
-    );
-  }
+export function List() {
+  return (
+    <div id="listContainer">
+      <Button variant="outlined" href="/add">
+        Add job
+      </Button>
+      <DataTable />
+    </div>
+  );
 }
 
 export default List;
@@ -83,6 +82,8 @@ const handleRowClick = (newSelection) => {
   const obj = rows.find((x) => x.id == newSelection);
   activeCustomerObject = obj;
   console.log(activeCustomerObject);
+  // const customer = useContext(UserContext);
+  // customer.setActiveCustomer('ads');
 };
 
 export function DataTable() {

@@ -1,14 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Add extends Component {
-  render() {
-    return (
-      <div>
-        <h2>ADD</h2>
-        <p>Add job</p>
-      </div>
-    );
-  }
+function Add() {
+  return (
+    <div>
+      <h2>ADD</h2>
+      <p>Add job</p>
+    </div>
+  );
 }
 
 export default Add;
