@@ -1,10 +1,10 @@
 import React, { useState, useContext } from 'react';
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
 import Button from '@mui/material/Button';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { createStyles, makeStyles } from '@mui/styles';
 import { DataGrid } from '@mui/x-data-grid';
-import UserContext from '../main';
+// import UserContext from '../main';
 import { CustomerContext } from '../main';
 
 export let activeCustomerObject;
@@ -12,6 +12,7 @@ export let activeCustomerObject;
 export function List() {
   return (
     <div id="listContainer">
+      <h2>JOB LIST</h2>
       <Button variant="outlined" href="/add">
         Add job
       </Button>
@@ -35,7 +36,7 @@ const columns = [
   { field: 'workDesc', headerName: 'Work', minWidth: 90, flex: 3 },
   { field: 'status', headerName: 'Status', minWidth: 90, flex: 2 },
   {
-    field: 'totalTime',
+    field: 'timeLogged',
     headerName: 'Time spent',
     type: 'number',
     minWidth: 90,
@@ -44,16 +45,6 @@ const columns = [
     align: 'left',
   },
   { field: 'flag', headerName: 'Flag', minWidth: 90, flex: 1 },
-
-  // {
-  //   field: 'fullName',
-  //   headerName: 'Full name',
-  //   description: 'This column has a value getter and is not sortable.',
-  //   sortable: false,
-  //   width: 160,
-  //   valueGetter: (params) =>
-  //     `${params.row.firstName || ''} ${params.row.lastName || ''}`,
-  // },
 ];
 
 // Style override because the component's text is usually black
@@ -105,13 +96,7 @@ export function DataTable() {
         onSelectionModelChange={(newSelection) => {
           handleRowClick(newSelection);
           setCustomer({
-            id: activeCustomerObject.id,
-            customer: activeCustomerObject.customer,
-            itemDesc: activeCustomerObject.itemDesc,
-            workDesc: activeCustomerObject.workDesc,
-            status: activeCustomerObject.status,
-            totalTime: activeCustomerObject.totalTime,
-            flag: activeCustomerObject.flag,
+            ...activeCustomerObject,
           });
         }}
       />
@@ -124,189 +109,220 @@ const rows = [
   {
     id: 1,
     customer: 'Snow',
+    email: 'abcdef@fasjdf.com',
     itemDesc: 'Omega Seamaster 300',
     workDesc: 'Crown & Stem',
+    quotedPrice: 450,
+    timeEstimate: 70,
+    timeLogged: 100,
+    costs: 160,
     status: 'Returned',
-    totalTime: '2',
     flag: '',
+    log: [
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+      'fugit, sed quia consequuntur magni dolores eos',
+      'minima veniam, quis nostrum exercitationem ullam corporis',
+    ],
   },
   {
     id: 2,
     customer: 'Shipp',
+    email: 'adfsf@fasjdf.com',
     itemDesc: 'Patek Philippe Worldtimer',
     workDesc: 'Movement exchange',
+    quotedPrice: 450,
+    timeEstimate: 130,
+    timeLogged: 100,
+    costs: 120,
     status: 'Complete',
-    totalTime: '3.5',
     flag: '',
+    log: [
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+      'fugit, sed quia consequuntur magni dolores eos',
+      'minima veniam, quis nostrum exercitationem ullam corporis',
+    ],
+    notes: 'Customer note customer note customer note customer note',
   },
   {
     id: 3,
     customer: 'Seneca',
+    email: 'afsdfdsfdsf@fasjdf.com',
     itemDesc: 'Vacheron Constantin',
     workDesc: 'Quartz service',
+    quotedPrice: 450,
+    timeEstimate: 160,
+    timeLogged: 100,
+    costs: 100,
     status: 'Returned',
-    totalTime: '2.25',
-    flag: 'Yes',
+    flag: '🏳️',
+    log: [
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+      'fugit, sed quia consequuntur magni dolores eos',
+      'minima veniam, quis nostrum exercitationem ullam corporis',
+    ],
+    notes: 'abcdefghijklmnop',
   },
   {
     id: 4,
     customer: 'Khan',
+    email: 'a534543543@fasjdf.com',
     itemDesc: 'Rolex Daytona',
     workDesc: 'Full service',
+    quotedPrice: 450,
+    timeEstimate: 200,
+    timeLogged: 100,
+    costs: 100,
     status: 'Complete',
-    totalTime: '2.5',
-    flag: '',
+    flag: '🏳️',
+    log: [
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+      'fugit, sed quia consequuntur magni dolores eos',
+      'minima veniam, quis nostrum exercitationem ullam corporis',
+    ],
+    notes: 'lorem ipsum lorem ipsum',
   },
   {
     id: 5,
     customer: 'Gordon',
+    email: 'btfgnhrtf@fasjdf.com',
     itemDesc: 'Omega Speedmaster',
     workDesc: 'Refinishing',
+    quotedPrice: 450,
+    timeEstimate: 40,
+    timeLogged: 100,
+    costs: 70,
     status: 'In progress',
-    totalTime: '1.75',
     flag: '',
+    log: [
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+      'fugit, sed quia consequuntur magni dolores eos',
+      'minima veniam, quis nostrum exercitationem ullam corporis',
+    ],
   },
   {
     id: 6,
     customer: 'Turn',
+    email: 'a53453464f@fasjdf.com',
     itemDesc: 'Rolex Antimagnetique',
     workDesc: 'Full service',
+    quotedPrice: 450,
+    timeEstimate: 50,
+    timeLogged: 100,
+    costs: 40,
     status: 'In progress',
-    totalTime: '0.5',
     flag: '',
+    log: [
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+      'fugit, sed quia consequuntur magni dolores eos',
+      'minima veniam, quis nostrum exercitationem ullam corporis',
+    ],
   },
   {
     id: 7,
     customer: 'Perkins',
+    email: 'a4n646n45f@fasjdf.com',
     itemDesc: 'Bulova Apollo',
     workDesc: 'Full service',
+    quotedPrice: 450,
+    timeEstimate: 30,
+    timeLogged: 100,
+    costs: 40,
     status: 'In progress',
-    totalTime: '0.75',
-    flag: 'Yes',
+    flag: '🚩',
+    log: [
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+      'fugit, sed quia consequuntur magni dolores eos',
+      'minima veniam, quis nostrum exercitationem ullam corporis',
+    ],
   },
   {
     id: 8,
     customer: 'McCoy',
+    email: '6g46b456b@fasjdf.com',
     itemDesc: 'Patek Philippe Unicorn',
     workDesc: 'Battery and pressure test',
+    quotedPrice: 450,
+    timeEstimate: 20,
+    timeLogged: 100,
+    costs: 20,
     status: 'In progress',
-    totalTime: '0.25',
     flag: '',
+    log: [
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+      'fugit, sed quia consequuntur magni dolores eos',
+      'minima veniam, quis nostrum exercitationem ullam corporis',
+    ],
   },
   {
     id: 9,
     customer: 'France',
+    email: '535434b54@fasjdf.com',
     itemDesc: 'George Daniels Chronograph',
     workDesc: 'Refinishing',
+    quotedPrice: 450,
+    timeEstimate: 190,
+    timeLogged: 100,
+    costs: 40,
     status: 'In progress',
-    totalTime: '0.25',
     flag: '',
+    log: [
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+      'fugit, sed quia consequuntur magni dolores eos',
+      'minima veniam, quis nostrum exercitationem ullam corporis',
+    ],
   },
   {
     id: 10,
     customer: 'Speed',
+    email: 'abcv23r32vr32@fasjdf.com',
     itemDesc: 'Bulgari Magsonic',
     workDesc: 'Dial repair',
+    quotedPrice: 450,
+    timeEstimate: 210,
+    timeLogged: 100,
+    costs: 40,
     status: 'Quote sent',
-    totalTime: '0',
     flag: '',
+    log: [
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+      'fugit, sed quia consequuntur magni dolores eos',
+      'minima veniam, quis nostrum exercitationem ullam corporis',
+    ],
   },
   {
     id: 33,
     customer: 'Coast',
+    email: 'a24v34v324v32f@fasjdf.com',
     itemDesc: 'Rolex Paul Newman',
     workDesc: 'Strap replacement',
+    quotedPrice: 450,
+    timeEstimate: 270,
+    timeLogged: 100,
+    costs: 60,
     status: 'Quote sent',
-    totalTime: '0',
-    flag: 'Yes',
+    flag: '🚩',
+    log: [
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+      'fugit, sed quia consequuntur magni dolores eos',
+      'minima veniam, quis nostrum exercitationem ullam corporis',
+    ],
   },
   {
     id: 56,
     customer: 'Smith',
+    email: 'av4234v324f@fasjdf.com',
     itemDesc: 'Zenith Chronomaster',
     workDesc: 'Bezel repair',
+    quotedPrice: 450,
+    timeEstimate: 220,
+    timeLogged: 100,
+    costs: 90,
     status: 'Received',
-    totalTime: '0',
     flag: '',
+    log: [
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+      'fugit, sed quia consequuntur magni dolores eos',
+      'minima veniam, quis nostrum exercitationem ullam corporis',
+    ],
   },
 ];
-
-//////////////// OLD DELETE BELOW
-/*
-function createData(customerName, itemDesc, workDesc, status, totalTime, flag) {
-  return { customerName, itemDesc, workDesc, status, totalTime, flag };
-}
-
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
-
-function descendingComparator(a, b, orderBy) {
-  if (b[orderBy] < a[orderBy]) {
-    return -1;
-  }
-  if (b[orderBy] > a[orderBy]) {
-    return 1;
-  }
-  return 0;
-}
-
-function getComparator(order, orderBy) {
-  return order === 'desc'
-    ? (a, b) => descendingComparator(a, b, orderBy)
-    : (a, b) => -descendingComparator(a, b, orderBy);
-}
-
-function stableSort(array, comparator) {
-  const stabilizedThis = array.map((el, index) => [el, index]);
-  stabilizedThis.sort((a, b) => {
-    const order = comparator(a[0], b[0]);
-    if (order !== 0) {
-      return order;
-    }
-    return a[1] - b[1];
-  });
-  return stabilizedThis.map((el) => el[0]);
-}
-
-export function BasicTable() {
-  return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Customer</TableCell>
-            <TableCell align="right">Item</TableCell>
-            <TableCell align="right">Description</TableCell>
-            <TableCell align="right">Status</TableCell>
-            <TableCell align="right">Total Time</TableCell>
-            <TableCell align="right">Flag</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <TableRow
-              key={row.customerName}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-                {row.customerName}
-              </TableCell>
-              <TableCell align="right">{row.itemDesc}</TableCell>
-              <TableCell align="right">{row.workDesc}</TableCell>
-              <TableCell align="right">{row.status}</TableCell>
-              <TableCell align="right">{row.totalTime}</TableCell>
-              <TableCell align="right">{row.flag}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-  );
-}
-
-*/

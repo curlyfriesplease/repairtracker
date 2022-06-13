@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { CustomerContext } from '../main';
 import '../styles/buttons.css';
+import { activeCustomerObject } from './list';
 
 // function ContextUpdateTest() {
 //   const [customer, setCustomer] = useContext(CustomerContext);
@@ -39,9 +40,16 @@ function Settings() {
           })
         }
       >
-        Change active customer to test object
+        Change react context to test object
       </button>
       <br />
+      <br />
+      <button
+        className="button-85"
+        onClick={() => window.alert(JSON.stringify(activeCustomerObject))}
+      >
+        Window alert active customer object
+      </button>
     </div>
   );
 }
