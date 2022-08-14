@@ -9,6 +9,7 @@ import Stats from './components/stats';
 import Settings from './components/settings';
 import Add from './components/add';
 import Edit from './components/edit';
+import { GoogleSigninComponent } from './auth/auth_google';
 
 import ActiveCustomerBar from './components/footer';
 
@@ -48,6 +49,7 @@ function Main(props) {
   return (
     <Router>
       <CustomerContextProvider>
+        <GoogleSigninComponent />
         <div id="theBigFella">
           <ActiveCustomerBar />
           <div id="navbar">

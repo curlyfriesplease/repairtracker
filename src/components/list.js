@@ -26,7 +26,13 @@ export default List;
 function handleRowClick(newSelection) {
   const obj = rows.find((x) => x.id == newSelection);
   activeCustomerObject = obj;
+  console.log(
+    '~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~',
+    '\n',
+    'Active customer object:'
+  );
   console.log(activeCustomerObject);
+  console.log('~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~^~');
 }
 
 const columns = [
@@ -71,7 +77,7 @@ const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
       color: 'white',
-      fontSize: '24',
+      fontSize: '20',
     },
   })
 );

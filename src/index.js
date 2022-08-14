@@ -5,6 +5,8 @@ import Main from './main';
 import jQuery from 'jquery';
 import $ from 'jquery';
 
+import { initApp } from './auth/auth_google.js';
+
 ReactDOM.render(<Main />, document.getElementById('root'));
 
 // Highlight the currently active Navbar item
@@ -14,3 +16,7 @@ $('.navItem').on('click', function () {
   $('.navItem.activeSelection').removeClass('activeSelection');
   $(this).addClass('activeSelection');
 });
+
+window.onload = function () {
+  initApp();
+};
