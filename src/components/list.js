@@ -1,4 +1,5 @@
-import React, { useState, useContext } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
+import { Navigate } from 'react-router-dom';
 // import ReactDOM from 'react-dom';
 import Button from '@mui/material/Button';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -6,10 +7,22 @@ import { createStyles, makeStyles } from '@mui/styles';
 import { DataGrid } from '@mui/x-data-grid';
 // import UserContext from '../main';
 import { CustomerContext } from '../main';
+import { UserContext } from '../providers/UserProvider';
 
 export let activeCustomerObject;
 
 export function List() {
+  const user = useContext(UserContext);
+  const [redirect, setredirect] = useState(null);
+
+  useEffect(() => {
+    if (!user) {
+      setredirect('/settings');
+    }
+  }, [user]);
+  if (redirect) {
+    <Navigate to={redirect} />;
+  }
   return (
     <div id="listContainer">
       <h2>JOB LIST</h2>

@@ -1,16 +1,12 @@
 import React, { Component, useState, useContext, useMemo } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import jQuery from 'jquery';
-import $ from 'jquery';
-
 import List, { activeCustomerObject } from './components/list';
 import Active from './components/active';
 import Stats from './components/stats';
 import Settings from './components/settings';
 import Add from './components/add';
 import Edit from './components/edit';
-import { GoogleSigninComponent } from './auth/auth_google';
-
+import UserProvider from './providers/UserProvider';
 import ActiveCustomerBar from './components/footer';
 
 import './styles/main.css';
@@ -47,65 +43,68 @@ function Main(props) {
   const value = { activeCustomer, setActiveCustomer };
 
   return (
-    <Router>
-      <CustomerContextProvider>
-        <GoogleSigninComponent />
-        <div id="theBigFella">
-          <ActiveCustomerBar />
-          <div id="navbar">
-            <div id="navbarlist">
-              <div className="navItem activeSelection">
-                <Link to="/">
-                  <div className="navIcon">
-                    <span className="material-icons-outlined">
-                      format_list_bulleted
-                    </span>
-                  </div>
-                  <div className="navText">LIST</div>
-                </Link>
-              </div>
-              <div className="navItem">
-                <Link to="/active">
-                  <div className="navIcon">
-                    <span className="material-icons-outlined">handyman</span>
-                  </div>
-                  <div className="navText">ACTIVE</div>
-                </Link>
-              </div>
-              <div className="navItem">
-                <Link to="/stats">
-                  <div className="navIcon">
-                    <span className="material-icons-outlined">assessment</span>
-                  </div>
-                  <div className="navText">STATS</div>
-                </Link>
-              </div>
-              <div className="navItem">
-                <Link to="/settings">
-                  <div className="navIcon">
-                    <span className="material-icons-outlined">settings</span>
-                  </div>
-                  <div className="navText">SETTINGS</div>
-                </Link>
+    <UserProvider>
+      <Router>
+        <CustomerContextProvider>
+          <div id="theBigFella">
+            <ActiveCustomerBar />
+            <div id="navbar">
+              <div id="navbarlist">
+                <div className="navItem activeSelection">
+                  <Link to="/">
+                    <div className="navIcon">
+                      <span className="material-icons-outlined">
+                        format_list_bulleted
+                      </span>
+                    </div>
+                    <div className="navText">LIST</div>
+                  </Link>
+                </div>
+                <div className="navItem">
+                  <Link to="/active">
+                    <div className="navIcon">
+                      <span className="material-icons-outlined">handyman</span>
+                    </div>
+                    <div className="navText">ACTIVE</div>
+                  </Link>
+                </div>
+                <div className="navItem">
+                  <Link to="/stats">
+                    <div className="navIcon">
+                      <span className="material-icons-outlined">
+                        assessment
+                      </span>
+                    </div>
+                    <div className="navText">STATS</div>
+                  </Link>
+                </div>
+                <div className="navItem">
+                  <Link to="/settings">
+                    <div className="navIcon">
+                      <span className="material-icons-outlined">settings</span>
+                    </div>
+                    <div className="navText">SETTINGS</div>
+                  </Link>
+                </div>
               </div>
             </div>
+            <div id="content">
+              <Routes>
+                <Route exact path="/" element={<List />} />
+
+                <Route path="/active" element={<Active />} />
+
+                <Route path="/stats" element={<Stats />} />
+
+                <Route path="/settings" element={<Settings />} />
+
+                <Route path="/add" element={<Add />} />
+              </Routes>
+            </div>
           </div>
-          <div id="content">
-            <Routes>
-              <Route exact path="/" element={<List />} />
-
-              <Route path="/active" element={<Active />} />
-
-              <Route path="/stats" element={<Stats />} />
-
-              <Route path="/settings" element={<Settings />} />
-
-              <Route path="/add" element={<Add />} />
-            </Routes>
-          </div>
-        </div>
-      </CustomerContextProvider>
-    </Router>
+        </CustomerContextProvider>
+      </Router>
+    </UserProvider>
   );
 }
 
