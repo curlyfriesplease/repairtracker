@@ -11,33 +11,43 @@ export default function Login() {
 
   useEffect(() => {
     if (user) {
+      console.log('User is logged in, redirecting to the list.');
       setredirect('/list');
     }
   }, [user]);
+
   if (redirect) {
     <Navigate to={redirect} />;
   }
+
   return (
     <div className="login-buttons">
-      <button className="login-provider-button" onClick={signInWithGoogle}>
-        <img
-          src="https://img.icons8.com/ios-filled/50/000000/google-logo.png"
-          alt="google icon"
-        />
-        <span> Continue with Google</span>
+      <button
+        className="login-provider-button googleSSObutton"
+        onClick={signInWithGoogle}
+      >
+        <div id="login">
+          <img
+            src="https://img.icons8.com/ios-filled/50/000000/google-logo.png"
+            alt="google icon"
+          />
+          <span> Login</span>
+        </div>
       </button>
     </div>
   );
 }
 
-export const Logout = () => {
+export const Logout = (user) => {
   return (
-    <button className="logout-button" onClick={googleLogOut}>
-      <img
-        src="https://img.icons8.com/ios-filled/50/000000/google-logo.png"
-        alt="google icon"
-      />
-      <span> logout</span>
+    <button className="logout-button googleSSObutton" onClick={googleLogOut}>
+      <div id="logout">
+        <img
+          src="https://img.icons8.com/ios-filled/50/000000/google-logo.png"
+          alt="google icon"
+        />
+        <span>logout</span>
+      </div>
     </button>
   );
 };
@@ -45,10 +55,9 @@ export const Logout = () => {
 export const LoggedInUser = (user) => {
   const { photoURL, displayName } = user.user;
   return (
-    <span>
-      Logged in as:
-      <img src={photoURL} />
+    <div id="loggedInAsDetails">
+      <img src={photoURL} id="profilePicture" />
       <h3>{displayName}</h3>
-    </span>
+    </div>
   );
 };
