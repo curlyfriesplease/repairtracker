@@ -20,3 +20,9 @@ https://console.firebase.google.com/?authuser=0
 6. Look for the firebaseConfig, and copy the object into constants.js
 7. In the Firebase console, open the Auth section.
 8. On the Sign in method tab, enable the Google sign-in method and click Save. You will need to provide a project support email.
+
+### Firebase Realtime DB
+
+9. Navigate to the Realtime Database section of the Firebase console
+10. Create DB
+11. Paste DB URL into REACT_APP_DATABASE_URL in the .env file
